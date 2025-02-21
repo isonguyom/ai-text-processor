@@ -130,12 +130,41 @@ const App = () => {
 
       try {
         setSummaryLoadingIndex(index);
+        const available = (await self.ai.summarizer.capabilities()).available;
         const text = messages[index].text;
-        const summarizer = await self.ai.summarizer.create();
-        const summary = await summarizer.summarize(text);
-        const updatedMessages = [...messages];
-        updatedMessages[index].summary = summary;
-        setMessages(updatedMessages);
+        const options = {
+          sharedContext: text,
+          type: 'key-points',
+          format: 'markdown',
+          length: 'medium',
+        };
+
+        if (available === 'no') {
+          // The Summarizer API isn't usable.
+
+          alert("Summarizer API is not usable.");
+          return;
+        }
+        if (available === 'readily') {
+          // The Summarizer API can be used immediately .
+          const summarizer = await ai.summarizer.create({
+            options,
+            monitor(m) {
+              m.addEventListener('downloadprogress', (e) => {
+                console.log(`Downloaded ${e.loaded} of ${e.total} bytes.`);
+              });
+            }
+          });
+
+          const summary = await summarizer.summarize();
+          const updatedMessages = [...messages];
+          updatedMessages[index].summary = summary;
+          setMessages(updatedMessages);
+        } else {
+
+          await summarizer.ready;
+        }
+
       } catch {
         alert("Error summarizing text");
       } finally {
