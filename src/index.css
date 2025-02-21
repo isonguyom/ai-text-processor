@@ -15,16 +15,54 @@
 
 body {
   margin: 0;
-width: 100%;
+  width: 100%;
   min-height: 100vh;
 }
 
-.chat-message {
-  background: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
+
+.dark select {
+  background-color: #364153;
 }
 
-.actions button {
-  margin-right: 5px;
+select option:hover {
+  background-color: #016630;
+}
+
+.dark .border-custom {
+  border-color: #747474;
+}
+
+.light .border-custom {
+  border-color: #7a7a7a;
+}
+
+.dark .bg-custom {
+  background-color: #2c2c2c3a;
+}
+
+.light .bg-custom {
+  background-color: #e6e5e5;
+}
+
+.dark textarea.border-custom:hover {
+  border-color: #016630;
+}
+
+.light textarea.border-custom:hover {
+  border-color: #016630;
+}
+
+.dark .mode-btn {
+  background-color: #00000056;
+  color: #fff;
+}
+
+.light .mode-btn {
+  background-color: #00000034;
+  color: #000;
+}
+
+.mode-btn:hover {
+  background-color: #016630;
+  color: #fff;
 }
