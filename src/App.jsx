@@ -180,7 +180,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className={`app w-full h-screen overflow-hidden flex flex-col gap-4 px-4 md:px-6 py-6 ${darkMode ? "dark bg-gray-700 text-white" : "light bg-white text-gray-800"}`}>
+    <div className={`app w-full h-screen overflow-hidden m-0 flex flex-col gap-4 px-4 md:px-6 py-6 ${darkMode ? "dark bg-gray-700 text-white" : "light bg-white text-gray-800"}`}>
 
       {/* Top Nav */}
       <nav className="flex justify-between items-center gap-4">
@@ -238,7 +238,7 @@ const App = () => {
             </div>
           ))}
         </div>
-        <div className="w-full h-fit pb-4 md:pb-0">
+        <div className="w-full">
           <ChatInput onSend={handleSend} />
         </div>
       </div>
