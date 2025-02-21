@@ -56,6 +56,7 @@ const languageDetector = (() => {
     return { detect };
   } else {
     alert("Language Detector API is not available.")
+    return { detect: () => "Unknown" };
   }
 })();
 
@@ -208,7 +209,7 @@ const App = () => {
             </div>
           ))}
         </div>
-        <div className="w-full h-fit">
+        <div className="w-full h-fit pb-4 md:pb-0">
           <ChatInput onSend={handleSend} />
         </div>
       </div>
